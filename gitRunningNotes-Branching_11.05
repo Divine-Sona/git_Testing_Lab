@@ -1,0 +1,438 @@
+-----------------------------------------------
+Landmak Technology  + 1 437 215 2483
+----------------------------------------------
+Git and GitHub Administration
+----------------------------------------------
+#url for notes: https://youtu.be/3YgutlExHRo
+
+https://github.com
+
+Git --> Distributed Version Control systems. DVCS
+
+        GitHub - MS
+        GitLab
+        BitBucket (Stash) - A
+
+
+SVN --> Sub Version
+CVS --> Concurrent Version system
+TFS --> Team Foundation Server
+
+IQ: As a DevOps Engineer, what are your roles & responsilities in Git?
+    I create repository and teams for new onboarded projects
+    I add users to team and grant required access	
+
+1. Create an organisation to manage Teams and repositories.
+   This usually  a one-time activity for a Business-Unit or organisation.
+   When future projects are onboarded we won't create new organisations
+
+2. Create repos in GitHub e-commence (ebay)
+      ebay-frontend -UI
+	  ebay-backend
+      ebay
+      
+      https://github.com/mylandmarktech-ebay/ebay.git        # repo url
+	 
+	  private repos:
+	     no has read or write access
+	  Public Repo: 
+	     by default everyone has read access
+		 only authorise persons can update the code
+	  
+
+3. Create a Team (ebay-devteam)
+
+        https://github.com/orgs/mylandmarktechs/teams/ebay-team   # team rul
+		
+		create or import share repos granting required permissions
+
+4. Add users to the team
+
+5. Provide/Grant repo access to the team
+
+
+GitHub - CE
+   https://github.com
+GHE    - EE
+    https://ghe.mss.com
+    https://ghe.aa.com
+
+Git Installations
+-----------------
+Pre Requisite Software Download/ Registration :
+	
+	Install git bash @ https://git-scm.com/downloads
+
+# Method 1
+#Login as a root user
+
+   sudo su - 
+
+$ sudo yum install git-all
+  sudo yum remove  git-all
+
+git --version
+
+
+# Method 2
+##Change dir to /opt
+# git is written in C# Language
+cd /opt
+##The below command will download and install all required development libraries to your system.
+yum groupinstall "Development Tools" -y
+yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel curl-devel -y
+yum install wget tar -y
+##Open below URL and select the specific version and right click on that and click on Copy Link ##Address, then execute the wget command.
+##https://github.com/git/git/releases
+wget https://github.com/git/git/archive/v2.29.2.tar.gz  -O git-bash.tar.gz
+tar -zxf git-bash.tar.gz
+cd git-2.29.2
+make configure
+./configure --prefix=/usr/local
+##make install command will copy the built program, and its libraries and documentation, to the correct locations.
+make install
+
+git --version
+
+git config --global user.name "Simon Legah"
+git config --global user.email "legah2000@gmail.com"
+git config --global --list
+
+
+cd ~/Desktop  --> windows
+
+mkdir ebay   --> Linux  
+
+mkdir project-ebay
+cd ebay
+
+git init          # to initialised a git empty repository
+git status        # to track files location
+git add           # move files to staging area from working area
+git commit -m     # move files to the local repository FROM STAGING AREA
+                  # good commit message for tracking changes/authors 
+
+git log
+
+git show cID
+
+Dev-Ops = SME
+
+git commit -a -m "updated user.java file"
+
+working area                staging            Local Repo      Remote repo SCM
+-----------                --------            ----------      -----------------
+untracked files              add                commit cID            push
+users.java       
+db.py
+monitor.sh       
+
+pull
+     
+
+Which commands is use to display all the commits? git log
+default branch -- master
+git remote add <ALIAS name><url-RR>
+git remote add eb https://github.com/mylandmarktechs/ebay.git
+git remote add eb https://github.com/mylandmarktechs/ebay.git
+
+git remote add ep https://github.com/mylandmarktechs/ebay.git
+
+git remote -v  # List REMOTE REPO mapping details
+git remote remove eb
+
+git push -u eb master
+
+What is the difference between Git & Github
+Git is an open source Distributed Version Control System(DVCS) which records
+changes made to files laying emphasis on speed, data integrity, and 
+distributed, non-linear workflows  
+
+Github is a hosted  repo (UI)  for git or an open source SCM tools
+
+Head is a pointer that points to the current branch and latest commit
+
+git log # list number of commits
+
+git show # show changes in each commit
+
+git commit -a -m "updated"
+
+git reset cID      # Move files from staging area to working area
+A problem occurs with a new commit how can that be fix?
+  
+  git revert  cID    # git revert remove files from the local repo
+  git push eb master # will remove reverted files/lines in the remote repo 
+                     # this syn local with remote repository
+
+                
+   
+git status  - tells you where your file is available
+    working area   - untracked file - red
+    staging area	- tracked files - green
+    local repo
+
+IQ: Can I revert a particular commitID? no
+
+# git clean -n  - review changes
+# git clean -f   - delete all files in the WA
+
+IDE – Integrated Development Environment
+Eclipse  -  open source
+MyEclipse - not
+NetBeans  OS Heavy
+Intellij - not
+Front – End 
+VS Code
+Atom
+
+    .classpath
+    .project
+    node_modules
+
+# .gitignore  .project     .classpath   node_modules
+
+# which Atlassian projects have you used?
+--------------------------------
+BitBucket  ---> scm
+Bamboo --> CI/CD
+Jira -->  Ticketing tool
+Confluence  --> Document tool 
+
+# git branch 
+# git branch BN – Create a branch
+# git checkout BN  - will switch to a branch
+# git checkout dev  - 
+Environment:
+    development branch deploying to Development ENV 
+    testing branch deploys to  Testing ENV
+    testing branch deploys to  UAT(QA, BA)   ENV
+    MASTER branch deploys to  Production
+    
+# git branch – displays  current bn (green) & other branches
+# git diff BN
+# git merge NB
+# git diff development stage – will compare s/d
+# git conflict – are resolved manually
+git add .
+git commit -m "merge conflict"
+
+git commit -a -m "merge conflict"
+
+
+# git checkout -b bugfix
+Switched to a new branch 'bugfix'
+git push aws bn
+git push origin bn
+git push aws --all
+# modify a file in the rr and merge with master
+git push aws master hotfix
+git branch -r – display RR branches
+git branch -a
+#creating branch on GitHub
+git branch -d BN   #will delete a branch in localrepo
+git push an :BN    #will delete a remote branch
+
+# tag
+difference b tag and branches
+#Tags                     # Branch
+immutable                    mutable
+unmodifiable                modifiable
+After Production            development-wip
+Master Recommended          any branch
+
+git tag TN                  git branch BN
+git push an --all           git push an --tags
+git push an BM              git push an tag TN
+git tag -d TN               git branch -d TN
+
+git tag projectName-v1.0.2
+
+git tag ebay:v1.0.2
+
+1 --> higher version
+0 --> lower version
+2 --> patch
+
+# development branch code are deployed in dev
+# stage in test or uat
+# master is deployed in the production
+
+git revert CID 
+
+# git clean -n  - review changes to be deleted
+# git clean -f   - delete all files in the WA
+
+
+
+git stash  # to take backup
+git stash  list
+stash@{0}
+stash@{1}
+
+git stash apply            # resume wip for the most recent backup
+git stash apply stash@{0}  # resume wip
+git stash apply stash@{5}  # resume wip for 5th backup
+git stash drop stash@{0}   # will delete backup
+git stash pop stash@{1}    #It apply & drop backup 1.
+git stash pop
+# git 
+
+git cherry-pick  ae5a5d6d   # It is use choose a commit from one 
+                             #  branch and  apply it onto another
+
+stage --> dc1 --> dc2 --> dc10
+   
+master
+  git merge stage 
+
+git checkout -b stage
+
+https://github.com/mylandmarktechs/ebay.git
+
+https://github.com/mylandmarktech-ebay/ebay.git
+
+git clone
+    push
+    pull
+    fetch
+developer Sam
+
+git push origin master
+
+Manage access
+
+git fetch
+
+when should I used fetch, clone and pull
+
+Ways to access SSH repository
+
+1) Use Password  # Passwd applies with HTTPS that requires password authentication
+
+2. Use SSH-KEYS: Generate SSH key from computer and establish SSH connection and communication with a/c/ remote repo 
+
+ls ~/.ssh/          #command to find out if you have ssh key
+cat ~/.ssh/id_rsa.pub
+
+ssh -T git@github.com
+
+ssh-keygen - rsa      #command used to generate SSH key using an algorothm 
+ssh-keygen -t dsa
+ls -la ~/.ssh  
+    id_rsa         private
+    id_rsa.pub     public
+    known_hosts    hosts validated credentials
+    
+ssh uses RSA encryption  algorithm by default.
+
+3) Creating Personal Access Token
+It can be used in the place of password to manage personal user accounts
+It can be used to control access eg
+
+
+3251ec6bf0bd827f4961ffd1043cecc5ccdeea17
+    It is use to access and/or manage the GitHub-API (Application Program Interface) resources
+    Use to control access 
+    use to access GitHub account instead of password
+We can generate multiple PAT with different level of access    
+
+git commit --amend -m "an updated commit message" : 
+   Change most recent Git commit message.
+
+git log --author="Simon Legah"
+
+#IQ: What is the difference b/w git commit and git rebase????
+
+master -->mc1 -->mc2-->
+                |
+                |
+                > development dc1-->dc2-->dc3
+
+git merge :# dc1-->dc2-->dc3 = dc # git merge would merge all the comits into one single commit in the master branch
+
+git rebase : dc1-->dc2-->dc3    # git rebase will merge the commits independently ie it will separate them
+
+
+### Best Branching Strategy:
+There should minimum, 3 branches; dev, staging and master. And on top of the master branch, we have a bugfix branch should in case anything goes in production
+If the client needs some modification, we create anothe branch
+    development         
+                                          
+    stage
+
+    master -  
+        bugfix_bugName
+        feature
+There's no specifc strategy
+
+Git Best Practices:
+    Use branching strategy and pull requests
+    Commit once you finish the task. 
+    Avoid merge commits.
+    Don’t Commit Half-Done - git stash
+    Test your code before commit.
+    Write Good Commit Messages before you are committing 
+    Try to use git commands rather than GUI tools.
+    
+HTTP Status Codes
+1×× Informational
+    100 Continue
+    101 Switching Protocols
+    102 Processing
+2×× Success
+    200 OK
+    201 Created
+    202 Accepted
+3×× Redirection
+    300 Multiple Choices
+    301 Moved Permanently
+    302 Found
+    303 See Other
+4×× Client Error
+    400 Bad Request
+    401 Unauthorized
+    402 Payment Required
+    403 Forbidden
+    404 Not Found
+    405 Method Not Allowed
+    406 Not Acceptable
+5×× Server Error
+    500 Internal Server Error
+    501 Not Implemented
+    502 Bad Gateway
+    503 Service Unavailable
+    504 Gateway Timeout
+https://httpstatuses.com/  
+  
+  
+Manage access
+
+
+
+abe4c5c017fc1520eb4beabd5b7fc633317cd085
+
+
+ROLES: 
+    USD210,000
+    DevOps Engineer 
+    Cloud Engineer
+    Platform Engineer
+    SRE
+    CKA || SCM 
+    AWS Solution Architect || 
+    Cloud Engineer | | BSc. ||
+    Linux - RHEL,  UBUNTU, CENTOS
+
+LANDGUAGES:
+   •	Bash Shell, Powershell, 
+        yaml, Json, Golang and Groovy.  
+        
+AWS 
+
+ACHIEVING ZERO DOWNTIME:
+    1. Attend your classes
+    2A. Revise (videos and/or notes) before the next class 
+    2. Consistently dedicated 6+ hours for daily studies
+    3. Raise ticket of issues and share in the group.
+    4. Be quick to help others reslove issues - 
